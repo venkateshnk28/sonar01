@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('clone from github(GitHubBuild)') {
             steps {
-                git branch: 'masteer', url: 'https://github.com/venkateshnk28/sonar01.git'
+                git branch: 'master', url: 'https://github.com/venkateshnk28/sonar01.git'
             }
         }
 
@@ -27,5 +27,5 @@ pipeline {
 	       }
             }
         }
-    }
+    } 
 }
