@@ -21,7 +21,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
 	    	withSonarQubeEnv('sonar') {
-                        sh "${SONARQUBE_HOME}/bin/sonar-scanner-X -Dsonar.projectKey=EKART -Dsonar.projectName=EKART -Dsonar.java.binaries"
+                        sh "${SONARQUBE_HOME}/bin/sonar-scanner -Dsonar.projectKey=EKART -Dsonar.projectName=EKART -Dsonar.java.binaries"
                
                 }
             }
