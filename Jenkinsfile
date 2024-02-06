@@ -15,14 +15,13 @@ pipeline {
         stage('Maven Build') {
             steps {
                 sh 'mvn clean install package'
-                }
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
 	    	withSonarQubeEnv('sonar') {
-                        sh "${SONARQUBE_HOME}/bin/sonar-scanner -dsonar.projectKey=EKART -dsonar.projectName=EKART -dsonar.java.binaries"
+                        sh "${SONARQUBE_HOME}/bin/sonar-scanner -Dsonar.projectKey=EKART -dsonar.projectName=EKART -dsonar.java.binaries"
                }
             }
         }
