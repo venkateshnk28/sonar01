@@ -23,9 +23,10 @@ pipeline {
 	    	withSonarQubeEnv('sonar') {
                         sh "${SONARQUBE_HOME}/bin/sonar-scanner -Dsonar.projectKey=EKART -dsonar.projectName=EKART -dsonar.java.binaries"
                
-
-	       }
+                }
             }
-        }
-    } 
+        }
+    }
 }
+
+
