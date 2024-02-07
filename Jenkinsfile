@@ -1,32 +1,24 @@
 pipeline {
     agent any
-    
-    environment {
-        SONARQUBE_HOME = tool 'sonarqube01'
-    }
 
-    stages {
+   stages {
         stage('clone from github(GitHubBuild)') {
             steps {
                 git branch: 'master', url: 'https://github.com/venkateshnk28/sonar01.git'
             }
         }
-
-        stage('Maven Build') {
+        stage('build war file(MavenBuild)') {
             steps {
-                sh 'mvn clean install package'
+                sh "mvn clean install package"
             }
         }
-
-        stage('SonarQube Analysis') {
+        stage('deploy to tomcat(DeployBuild)') {
             steps {
-	    	withSonarQubeEnv('sonar') {
-                        sh "${SONARQUBE_HOME}/bin/sonar-scanner -Dsonar.projectKey=EKART -Dsonar.projectName=EKART -Dsonar.java.binaries=."
-               
-                }
+                sh "sudo scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/tomcat/webapp/target/webapp.war root@34.226.214.58:/home/ec2-user/tomcat/webapps/"
             }
         }
     }
 }
+
 
 
